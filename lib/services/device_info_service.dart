@@ -36,6 +36,8 @@ class DeviceInfoService {
       };
     }
 
-    return deviceData;
+    _deviceData = deviceData;
+
+    return _deviceData;
   }
 }
