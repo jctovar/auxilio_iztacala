@@ -1,4 +1,3 @@
-import 'package:alerta/utils/logger.dart';
 import 'package:alerta/widgets/get_location.dart';
 import 'package:alerta/widgets/info.dart';
 import 'package:alerta/widgets/profile.dart';
