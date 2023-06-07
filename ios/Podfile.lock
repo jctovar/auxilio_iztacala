@@ -56,7 +56,7 @@ SPEC CHECKSUMS:
   fl_location: 68b4a6c4aad2a453493ff66f196e0748280cf43e
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
-  package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
+  package_info_plus: fd030dabf36271f146f1f3beacd48f564b0f17f7
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   shared_preferences_foundation: e2dae3258e06f44cc55f49d42024fd8dd03c590c
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
