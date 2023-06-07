@@ -1,3 +1,4 @@
+import 'package:alerta/services/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:alerta/services/location_service.dart';
 import 'package:fl_location/fl_location.dart';
@@ -43,12 +44,15 @@ class _GetLocationState extends State<GetLocation> {
   Future<void> _getLocation() async {
     if (await _checkAndRequestPermission()) {
       const timeLimit = Duration(seconds: 10);
-      await FlLocation.getLocation(timeLimit: timeLimit).then((location) {
+
+      await FlLocation.getLocation(timeLimit: timeLimit).then((location) async {
         setState(() {
           text = '${location.latitude}, ${location.longitude}';
         });
 
-        _sendLocation('088400039', location.toJson());
+        await HelperFunctions.getUuidUserPreference().then((value) {
+          _sendLocation(value!, location.toJson());
+        });
 
         Logs.p.i('location: ${location.toJson().toString()}');
       }).onError((error, stackTrace) {
@@ -57,14 +61,17 @@ class _GetLocationState extends State<GetLocation> {
     }
   }
 
-  Future _sendLocation(String id, var data) async {
+  Future _sendLocation(String uuid, var data) async {
     Logs.p.i(data);
 
-    data['deviceId'] = id;
+    data['deviceId'] = uuid;
 
     var result = await LocationService.addLocation(data);
+
     if (result == 201) {
       Environment.showSnackbar(context, 'Se envio la ubicación correctamente.');
+    } else {
+      Environment.showSnackbar(context, 'Ocurrio un error.');
     }
   }
 

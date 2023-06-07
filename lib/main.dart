@@ -1,12 +1,38 @@
 import 'package:alerta/pages/home_page.dart';
+import 'package:alerta/services/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var uuid = const Uuid();
+
+  @override
+  void initState() {
+    super.initState();
+    _getUuidUser();
+  }
+
+  _getUuidUser() async {
+    await HelperFunctions.getUuidUserPreference().then((value) {
+      if (value == '') {
+        HelperFunctions.saveUuidUserPreference(uuid.v4());
+      } else {
+        print('Recuperado uuid... $value');
+      }
+      setState(() {});
+    });
+  }
 
   // This widget is the root of your application.
   @override
