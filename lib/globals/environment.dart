@@ -7,6 +7,15 @@ class Environment {
 
   static const apiUrl = 'https://idril.iztacala.unam.mx/iztacala/';
 
+  static inputDecoration(String label, String hint) {
+    return InputDecoration(
+      labelText: label,
+      hintText: hint,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      border: const OutlineInputBorder(),
+    );
+  }
+
   static showSnackbar(BuildContext context, String text, [Color? color]) {
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       backgroundColor: color,
