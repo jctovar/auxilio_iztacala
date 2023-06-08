@@ -1,3 +1,4 @@
+import 'package:alerta/utils/logger.dart';
 import 'package:alerta/widgets/get_location.dart';
 import 'package:alerta/widgets/info.dart';
 import 'package:alerta/widgets/profile.dart';
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
 
     if (!kIsWeb) {
       FlLocation.getLocationServicesStatusStream().listen((event) {
-        print('location services status: $event');
+        Logs.p.i('location services status: $event');
       });
     }
   }

@@ -1,5 +1,6 @@
 import 'package:alerta/pages/home_page.dart';
 import 'package:alerta/services/helper_functions.dart';
+import 'package:alerta/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
@@ -28,7 +29,7 @@ class _MyAppState extends State<MyApp> {
       if (value == '') {
         HelperFunctions.saveUuidUserPreference(uuid.v4());
       } else {
-        print('Recuperado uuid... $value');
+        Logs.p.i('Recuperado uuid... $value');
       }
       setState(() {});
     });

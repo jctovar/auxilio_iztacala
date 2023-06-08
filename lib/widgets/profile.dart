@@ -16,6 +16,7 @@ class _ProfileState extends State<Profile> {
   final _formKey = GlobalKey<FormBuilderState>();
   late String _username;
   late String _email;
+  late String _phone;
 
   @override
   void initState() {
@@ -26,11 +27,12 @@ class _ProfileState extends State<Profile> {
   Future<void> _getUserInState() async {
     await HelperFunctions.getUserNamePreference().then((value) {
       _username = value!;
-      print(_username);
     });
     await HelperFunctions.getUserEmailPreference().then((value) {
       _email = value!;
-      print(_email);
+    });
+    await HelperFunctions.getUserPhonePreference().then((value) {
+      _phone = value!;
     });
 
     setState(() {});
@@ -39,10 +41,22 @@ class _ProfileState extends State<Profile> {
   @override
   void dispose() {
     super.dispose();
-    print(_formKey.currentState?.value);
+    Logs.p.i(_formKey.currentState?.value);
   }
 
-  _saveData() {}
+  _saveData(var data) {
+    Logs.p.i(data);
+    try {
+      HelperFunctions.saveUserNamePreference(data["username"]);
+      HelperFunctions.saveUserEmailPreference(data["email"]);
+      HelperFunctions.saveUserPhonePreference(data["phone"]);
+
+      Environment.showSnackbar(
+          context, 'Se guardaron los datos correctamente.');
+    } catch (e) {
+      Environment.showSnackbar(context, 'Ocurrio un error.');
+    }
+  }
 
   formBuilder(context) {
     return FormBuilder(
@@ -58,7 +72,10 @@ class _ProfileState extends State<Profile> {
               decoration: Environment.inputDecoration(
                   'Número de cuenta', 'Ingresa tu número de cuenta'),
               validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(),
+                FormBuilderValidators.required(
+                    errorText: 'El número de cuenta es obligatorio.'),
+                FormBuilderValidators.match(Environment.username,
+                    errorText: 'Un número de cuenta a 9 digitos.')
               ]),
             ),
             const SizedBox(height: 10),
@@ -68,8 +85,22 @@ class _ProfileState extends State<Profile> {
               decoration: Environment.inputDecoration(
                   'Correo electrónico', 'Ingresa tu correo electrónico'),
               validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(),
+                FormBuilderValidators.required(
+                    errorText: 'El correo electrónico es obligatorio.'),
                 FormBuilderValidators.email(),
+              ]),
+            ),
+            const SizedBox(height: 10),
+            FormBuilderTextField(
+              name: 'phone',
+              initialValue: _phone,
+              decoration: Environment.inputDecoration('Télefono celular',
+                  'Ingresa el número de tu télefono personal'),
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(
+                    errorText: 'El número de télefono es obligatorio.'),
+                FormBuilderValidators.match(Environment.phone,
+                    errorText: 'Un número de télefono a 10 digitos.')
               ]),
             ),
             const SizedBox(height: 40),
@@ -82,8 +113,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 onPressed: () {
                   if (_formKey.currentState?.saveAndValidate() ?? false) {
-                    Logs.p.i(_formKey.currentState?.value);
-                    //_authLogin(_formKey.currentState?.value);
+                    _saveData(_formKey.currentState?.value);
                   }
                 },
                 child: const Text(

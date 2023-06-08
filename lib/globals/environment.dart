@@ -30,6 +30,5 @@ class Environment {
   static String rfc =
       '^[A-Z][A,E,I,O,U,X][A-Z]{2}[0-9]{2}[0-1][0-9][0-3][0-9][0-9,A-Z]{3}';
   static String phone = '^[0-9]{10}\$';
-  static String module = '^[0-9]{4}\$';
-  static String period = '^20[1-3][0-9]-[1-2]\$';
+  static String username = '^[0-9]{9}\$';
 }
