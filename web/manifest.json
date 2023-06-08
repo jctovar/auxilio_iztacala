@@ -1,11 +1,11 @@
 {
-    "name": "alerta",
-    "short_name": "alerta",
+    "name": "Auxilio Iztcala",
+    "short_name": "Auxilio Iztcala",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#hexcode",
-    "theme_color": "#hexcode",
-    "description": "A new Flutter project.",
+    "background_color": "#FFFFFF",
+    "theme_color": "#9fa8da",
+    "description": "Webapp Auxilio Iztcala.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
