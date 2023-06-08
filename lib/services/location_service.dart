@@ -1,35 +1,34 @@
 import 'dart:convert';
-import 'package:dio/dio.dart';
+import 'package:alerta/globals/environment.dart';
 import 'package:alerta/utils/logger.dart';
-import 'dio_service.dart';
+import 'package:http/http.dart' as http;
 
 class LocationService {
   // Create
-  static Future addLocation(formData) async {
-    Logs.p.i(formData);
 
-    var body = jsonEncode(formData, toEncodable: myEncode);
-    Logs.p.i(body);
-    try {
-      final response = await dio.post('/locations',
-          data: body,
-          options: Options(
-            headers: {
-              'content-type': 'application/json',
-              'Access-Control-Allow-Origin': 'true'
-            },
-          ));
-      if (response.statusCode == 201) {
-        return response.data['status'];
-      } else {
-        throw Exception("Error");
-      }
-    } on DioError catch (e) {
-      if (e.type == DioErrorType.receiveTimeout) {
-        throw Exception("Connection Timeout Exception");
-      }
-      throw Exception(e.message);
-    }
+  static Future addLocation(formData) async {
+    var bodyData = jsonEncode(formData, toEncodable: myEncode);
+
+    Logs.p.i(bodyData.toString());
+
+    final url = Uri.parse('${Environment.apiUrl}/locations');
+
+    final response = await http.post(
+      url,
+      body: {
+        "latitude": formData["latitude"].toString(),
+        "longitude": formData["longitude"].toString(),
+        "deviceId": formData["deviceId"].toString(),
+        "accuracy": formData["accuracy"].toString(),
+        "altitude": formData["altitude"].toString(),
+        "heading": formData["heading"].toString(),
+        "speed": formData["speed"].toString(),
+        "speedAccuracy": formData["speedAccuracy"].toString(),
+        "timestamp": formData["timestamp"].toString()
+      },
+    );
+
+    return response.statusCode;
   }
 }
 

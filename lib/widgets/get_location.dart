@@ -54,7 +54,7 @@ class _GetLocationState extends State<GetLocation> {
           _sendLocation(value!, location.toJson());
         });
 
-        Logs.p.i('location: ${location.toJson().toString()}');
+        // Logs.p.i('location: ${location.toJson().toString()}');
       }).onError((error, stackTrace) {
         Logs.p.e('error: ${error.toString()}');
       });
@@ -62,7 +62,7 @@ class _GetLocationState extends State<GetLocation> {
   }
 
   Future _sendLocation(String uuid, var data) async {
-    Logs.p.i(data);
+    // Logs.p.i(data);
 
     data['deviceId'] = uuid;
 
