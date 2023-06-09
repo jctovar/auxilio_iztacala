@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:alerta/globals/environment.dart';
 import 'package:alerta/utils/logger.dart';
 import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class LocationService {
   // Create
