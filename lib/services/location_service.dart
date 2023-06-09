@@ -6,7 +6,6 @@ import 'dart:async';
 
 class LocationService {
   // Create
-
   static Future addLocation(formData) async {
     var bodyData = jsonEncode(formData, toEncodable: myEncode);
 
