@@ -317,6 +317,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.8.1"
+  json_object_lite:
+    dependency: transitive
+    description:
+      name: json_object_lite
+      sha256: "541bbcd3ba8dd6c3026a9ae9c8580b3fcf1bbd5c678b3eceb50b855ece05c823"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.0"
   lints:
     dependency: transitive
     description:
@@ -522,6 +530,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  sporran:
+    dependency: "direct main"
+    description:
+      name: sporran
+      sha256: "6219f2e96d03de649d60f11f52309f39a2360a6d1bf52b5a45888407e9ebd984"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
   stack_trace:
     dependency: transitive
     description:
@@ -658,6 +674,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  wilt:
+    dependency: transitive
+    description:
+      name: wilt
+      sha256: "5ec22ac37d4bbd530bc4eb4f6b6938b4a76c3e7deba446a1557a065b9ebdf9c0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
   win32:
     dependency: transitive
     description:
